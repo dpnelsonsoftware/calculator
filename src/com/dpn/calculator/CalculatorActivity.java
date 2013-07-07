@@ -1,10 +1,14 @@
 package com.dpn.calculator;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
-import android.content.res.Configuration;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,51 +18,72 @@ import android.widget.ScrollView;
 
 public class CalculatorActivity extends Activity {
 
-	private static List<CalculatorTableRow> calcRows;
+	private static final String LOG_FILENAME = "CalculatorLog";
+	private List<CalculatorTableRowModel> mPreviousOps;
 	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+    	loadTable();
+    	System.out.println("DPN: onCreate");
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.calc_layout);
         LinearLayout prevOpps = (LinearLayout)this.findViewById(R.id.previousOperations);
         final ScrollView scrollView = (ScrollView)this.findViewById(R.id.scrollView1);
-        if(calcRows == null){
-	        prevOpps.removeAllViews();
-	        scrollView.setVerticalScrollBarEnabled(false);
-	        for(int i=0;i<25;i++){
-				calculateAndDisplay("", false);
-	        }
-        }else{
-        	for(CalculatorTableRow row : calcRows){
-         	 prevOpps.addView(row);
-        	}
-        	 scrollView.requestLayout();
-        	 scrollView.fullScroll(View.FOCUS_DOWN);
-        	 
-        	 scrollView.postDelayed(new Runnable(){
-        		  @Override
-        		  public void run(){
-        			  scrollView.fullScroll(View.FOCUS_DOWN);
-        		  }
-        		}, 100);
-        }
+        prevOpps.removeAllViews();
+        scrollView.setVerticalScrollBarEnabled(false);
         
-    }
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        calcRows = new ArrayList<CalculatorTableRow>();
-        LinearLayout prevOpps = (LinearLayout)this.findViewById(R.id.previousOperations);
-        for(int i=0; i<prevOpps.getChildCount();i++){
-        	calcRows.add((CalculatorTableRow)prevOpps.getChildAt(i));
+        //make sure we start with 25 operations
+        for(int i=mPreviousOps.size();i<25;i++){
+				calculateAndDisplay("", false);
         }
+        for(CalculatorTableRowModel row : mPreviousOps){
+        	View viewToAdd = new CalculatorTableRow(getApplicationContext(), row, this);
+        	viewToAdd.setBackgroundResource(R.drawable.scroll_item_shape);
+        	prevOpps.addView(viewToAdd);
+        }
+        scrollView.requestLayout();
+        scrollView.fullScroll(View.FOCUS_DOWN);
+        	 
+        scrollView.postDelayed(new Runnable(){
+        	@Override
+        	public void run(){
+        		scrollView.fullScroll(View.FOCUS_DOWN);
+        	}
+        }, 100);
+    }
+    private void loadTable() {
+    	FileInputStream inputStream;
+    	try {
+    		inputStream = openFileInput(LOG_FILENAME);
+      	  ObjectInputStream objStream = new ObjectInputStream(inputStream);
+      	  mPreviousOps = (List<CalculatorTableRowModel>)objStream.readObject();
+      	} catch (Exception e) {
+      		mPreviousOps  = new ArrayList<CalculatorTableRowModel>();
+      		e.printStackTrace();
+      	} 
+	}
+    private void saveTable(){
+    	FileOutputStream outputStream;
+    	try {
+    	  outputStream = openFileOutput(LOG_FILENAME, Context.MODE_PRIVATE);
+    	  ObjectOutputStream objStream = new ObjectOutputStream(outputStream);
+    	  objStream.writeObject(mPreviousOps);
+   			objStream.close();
+    	  outputStream.close();
+    	} catch (Exception e) {
+    	  e.printStackTrace();
+    	}
     }
     
     private void calculateAndDisplay(String text, boolean backgroundPattern){
+    	System.out.println("DPN "+text);
     	 LinearLayout prevOpps = (LinearLayout)this.findViewById(R.id.previousOperations);
     	 View viewToAdd;
-    	 viewToAdd = new CalculatorTableRow(getApplicationContext(),text, this);
+    	 CalculatorTableRowModel rowModel = new CalculatorTableRowModel(text);
+    	 mPreviousOps.add(rowModel);
+    	 saveTable();
+    	 viewToAdd = new CalculatorTableRow(getApplicationContext(),rowModel, this);
     	 if(backgroundPattern){
     		 viewToAdd.setBackgroundResource(R.drawable.scroll_item_shape);
     	 }
@@ -97,7 +122,6 @@ public class CalculatorActivity extends Activity {
 			case R.id.button_divide:
 			case R.id.button_multiply:
 				if(text.getText().toString().equals("")){
-					//FIXME: repopulate last result.
 			    	 LinearLayout prevOpps = (LinearLayout)this.findViewById(R.id.previousOperations);
 			    	 View lastResult= prevOpps.getChildAt(prevOpps.getChildCount()-1);
 			    	 if(lastResult instanceof CalculatorTableRow){
