@@ -10,6 +10,9 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,13 +27,27 @@ public class CalculatorActivity extends Activity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-    	loadTable();
-    	System.out.println("DPN: onCreate");
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.calc_layout);
+        
+    	loadTable();
+    }
+    
+    private void loadTable() {
+    	FileInputStream inputStream;
+    	try {
+    		inputStream = openFileInput(LOG_FILENAME);
+      	  ObjectInputStream objStream = new ObjectInputStream(inputStream);
+      	  mPreviousOps = (List<CalculatorTableRowModel>)objStream.readObject();
+      	} catch (Exception e) {
+      		mPreviousOps  = new ArrayList<CalculatorTableRowModel>();
+      		e.printStackTrace();
+      	} 
+    	
         LinearLayout prevOpps = (LinearLayout)this.findViewById(R.id.previousOperations);
         final ScrollView scrollView = (ScrollView)this.findViewById(R.id.scrollView1);
         prevOpps.removeAllViews();
+        prevOpps.removeAllViewsInLayout();
         scrollView.setVerticalScrollBarEnabled(false);
         
         //make sure we start with 25 operations
@@ -51,17 +68,6 @@ public class CalculatorActivity extends Activity {
         		scrollView.fullScroll(View.FOCUS_DOWN);
         	}
         }, 100);
-    }
-    private void loadTable() {
-    	FileInputStream inputStream;
-    	try {
-    		inputStream = openFileInput(LOG_FILENAME);
-      	  ObjectInputStream objStream = new ObjectInputStream(inputStream);
-      	  mPreviousOps = (List<CalculatorTableRowModel>)objStream.readObject();
-      	} catch (Exception e) {
-      		mPreviousOps  = new ArrayList<CalculatorTableRowModel>();
-      		e.printStackTrace();
-      	} 
 	}
     private void saveTable(){
     	FileOutputStream outputStream;
@@ -76,15 +82,16 @@ public class CalculatorActivity extends Activity {
     	}
     }
     
-    private void calculateAndDisplay(String text, boolean backgroundPattern){
-    	System.out.println("DPN "+text);
+    private void calculateAndDisplay(String text, boolean pKeepRecord){
     	 LinearLayout prevOpps = (LinearLayout)this.findViewById(R.id.previousOperations);
     	 View viewToAdd;
     	 CalculatorTableRowModel rowModel = new CalculatorTableRowModel(text);
-    	 mPreviousOps.add(rowModel);
-    	 saveTable();
+    	 if(pKeepRecord){
+    		 mPreviousOps.add(rowModel);
+    		 saveTable();
+    	 }
     	 viewToAdd = new CalculatorTableRow(getApplicationContext(),rowModel, this);
-    	 if(backgroundPattern){
+    	 if(!"".equals(text)){
     		 viewToAdd.setBackgroundResource(R.drawable.scroll_item_shape);
     	 }
     	 prevOpps.addView(viewToAdd);
@@ -146,4 +153,24 @@ public class CalculatorActivity extends Activity {
 		EditText text = (EditText)this.findViewById(R.id.currentOperation);
 		text.setText(text.getText().toString()+toAdd);
 	}
+	
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if(item.getItemId() == R.id.reset_log){
+			resetLog();
+			return true;
+		}
+		return false;
+	}
+	private void resetLog() {
+		mPreviousOps  = new ArrayList<CalculatorTableRowModel>();
+		saveTable();
+		loadTable();
+	}
+	
+	public boolean onCreateOptionsMenu(Menu pMenu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.calc_menu, pMenu);
+	    return true;
+	}
+	
 }

@@ -26,5 +26,6 @@
     <string name="clear">C</string>
     <string name="Delete">del</string>
     <string name="negative">-</string>
+    <string name="reset_log">Reset Log</string>
 
 </resources>

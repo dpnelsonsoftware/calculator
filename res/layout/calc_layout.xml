@@ -5,48 +5,48 @@
     android:layout_gravity="bottom"
     android:gravity="bottom|right"
     android:orientation="vertical" >
-
+
     <ScrollView
         android:id="@+id/scrollView1"
-        android:layout_weight="1"
         android:layout_width="fill_parent"
-        android:background="@drawable/scroll_view_shape"
+        android:layout_height="0dip"
         android:layout_margin="2dip"
+        android:layout_weight="1"
+        android:background="@drawable/scroll_view_shape"
         android:paddingLeft="2dip"
-        android:paddingRight="2dip"
-        android:layout_height="0dip" >
+        android:paddingRight="2dip" >
+
         <LinearLayout
             android:id="@+id/previousOperations"
-            android:orientation="vertical" 
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" 
-            android:paddingBottom="2dip">
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:paddingBottom="2dip" >
         </LinearLayout>
     </ScrollView>
-   
-       <EditText
+
+    <EditText
         android:id="@+id/currentOperation"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
+        android:layout_margin="2dip"
+        android:background="@drawable/current_entry_shape"
         android:editable="false"
         android:gravity="right"
-        android:paddingTop="1dip"
         android:paddingBottom="1dip"
         android:paddingLeft="5dip"
         android:paddingRight="5dip"
-        android:background="@drawable/current_entry_shape"
+        android:paddingTop="1dip"
         android:textColor="#D7D7D7"
-        android:textSize="30dip"
-        android:layout_margin="2dip"
-   		/>
-       
+        android:textSize="30dip" />
+
     <TableLayout
         android:id="@+id/tableLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-        
-       <TableRow
+
+        <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
@@ -58,57 +58,56 @@
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_margin="2dip"
                 android:layout_weight="1"
+                android:background="@drawable/button_shape"
                 android:onClick="button_onClick"
                 android:padding="1dip"
                 android:text="@string/clear"
                 android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
-                android:layout_margin="2dip"
                 android:textSize="30dip" />
-
+
             <Button
                 android:id="@+id/button_neg"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="30dip"
-                android:padding="1dip"
-                android:layout_weight="1"
-                android:onClick="button_onClick"
-                android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
                 android:layout_margin="2dip"
-                android:text="@string/negative" />
-
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="button_onClick"
+                android:padding="1dip"
+                android:text="@string/negative"
+                android:textColor="#C0C0C0"
+                android:textSize="30dip" />
+
             <Button
                 android:id="@+id/button_delete"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="30dip"
-                android:padding="1dip"
-                android:layout_weight="1"
-                android:onClick="button_onClick"
-                android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
                 android:layout_margin="2dip"
-                android:text="@string/Delete" />
-
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="button_onClick"
+                android:padding="1dip"
+                android:text="@string/Delete"
+                android:textColor="#C0C0C0"
+                android:textSize="30dip" />
+
             <Button
                 android:id="@+id/button_divide"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="30dip"
-                android:padding="1dip"
-                android:layout_weight="1"
-                android:onClick="button_onClick"
-                android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
                 android:layout_margin="2dip"
-                android:text="@string/divide" />
-
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="button_onClick"
+                android:padding="1dip"
+                android:text="@string/divide"
+                android:textColor="#C0C0C0"
+                android:textSize="30dip" />
         </TableRow>
 
         <TableRow
@@ -116,63 +115,62 @@
             android:layout_width="fill_parent"
             android:layout_height="0dip"
             android:layout_weight="1" >
-
+
             <Button
                 android:id="@+id/button_seven"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="30dip"
-                android:padding="1dip"
-                android:layout_weight="1"
-                android:onClick="button_onClick"
-                android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
                 android:layout_margin="2dip"
-                android:text="@string/seven"/>
-
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="button_onClick"
+                android:padding="1dip"
+                android:text="@string/seven"
+                android:textColor="#C0C0C0"
+                android:textSize="30dip" />
+
             <Button
                 android:id="@+id/button_eight"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="30dip"
-                android:padding="1dip"
-                android:layout_weight="1"
-                android:onClick="button_onClick"
-                android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
                 android:layout_margin="2dip"
-                android:text="@string/eight"/>
-
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="button_onClick"
+                android:padding="1dip"
+                android:text="@string/eight"
+                android:textColor="#C0C0C0"
+                android:textSize="30dip" />
+
             <Button
                 android:id="@+id/button_nine"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="30dip"
-                android:padding="1dip"
-                android:layout_weight="1"
-                android:onClick="button_onClick"
-                android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
                 android:layout_margin="2dip"
-                android:text="@string/nine" />
-
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="button_onClick"
+                android:padding="1dip"
+                android:text="@string/nine"
+                android:textColor="#C0C0C0"
+                android:textSize="30dip" />
+
             <Button
                 android:id="@+id/button_multiply"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="30dip"
-                android:padding="1dip"
-                android:layout_weight="1"
-                android:onClick="button_onClick"
-                android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
                 android:layout_margin="2dip"
-                android:text="@string/multiply" />
-
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="button_onClick"
+                android:padding="1dip"
+                android:text="@string/multiply"
+                android:textColor="#C0C0C0"
+                android:textSize="30dip" />
         </TableRow>
 
         <TableRow
@@ -186,57 +184,56 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="30dip"
-                android:padding="1dip"
-                android:layout_weight="1"
-                android:onClick="button_onClick"
-                android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
                 android:layout_margin="2dip"
-                android:text="@string/four" />
-
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="button_onClick"
+                android:padding="1dip"
+                android:text="@string/four"
+                android:textColor="#C0C0C0"
+                android:textSize="30dip" />
+
             <Button
                 android:id="@+id/button_five"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="30dip"
-                android:padding="1dip"
-                android:layout_weight="1"
-                android:onClick="button_onClick"
-                android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
                 android:layout_margin="2dip"
-                android:text="@string/five" />
-
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="button_onClick"
+                android:padding="1dip"
+                android:text="@string/five"
+                android:textColor="#C0C0C0"
+                android:textSize="30dip" />
+
             <Button
                 android:id="@+id/button_six"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="30dip"
-                android:padding="1dip"
-                android:layout_weight="1"
-                android:onClick="button_onClick"
-                android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
                 android:layout_margin="2dip"
-                android:text="@string/six" />
-
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="button_onClick"
+                android:padding="1dip"
+                android:text="@string/six"
+                android:textColor="#C0C0C0"
+                android:textSize="30dip" />
+
             <Button
                 android:id="@+id/button_minus"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="30dip"
-                android:padding="1dip"
-                android:layout_weight="1"
-                android:onClick="button_onClick"
-                android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
                 android:layout_margin="2dip"
-                android:text="@string/minus" />
-
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="button_onClick"
+                android:padding="1dip"
+                android:text="@string/minus"
+                android:textColor="#C0C0C0"
+                android:textSize="30dip" />
         </TableRow>
 
         <TableRow
@@ -250,57 +247,56 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="30dip"
-                android:padding="1dip"
-                android:layout_weight="1"
-                android:onClick="button_onClick"
-                android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
                 android:layout_margin="2dip"
-                android:text="@string/one" />
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="button_onClick"
+                android:padding="1dip"
+                android:text="@string/one"
+                android:textColor="#C0C0C0"
+                android:textSize="30dip" />
 
             <Button
                 android:id="@+id/button_two"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="30dip"
-                android:padding="1dip"
-                android:layout_weight="1"
-                android:onClick="button_onClick"
-                android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
                 android:layout_margin="2dip"
-                android:text="@string/two" />
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="button_onClick"
+                android:padding="1dip"
+                android:text="@string/two"
+                android:textColor="#C0C0C0"
+                android:textSize="30dip" />
 
             <Button
                 android:id="@+id/button_three"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="30dip"
-                android:padding="1dip"
-                android:layout_weight="1"
-                android:onClick="button_onClick"
-                android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
                 android:layout_margin="2dip"
-                android:text="@string/three" />
-
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="button_onClick"
+                android:padding="1dip"
+                android:text="@string/three"
+                android:textColor="#C0C0C0"
+                android:textSize="30dip" />
+
             <Button
                 android:id="@+id/button_plus"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="30dip"
-                android:padding="1dip"
-                android:layout_weight="1"
-                android:onClick="button_onClick"
-                android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
                 android:layout_margin="2dip"
-                android:text="@string/plus" />
-
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="button_onClick"
+                android:padding="1dip"
+                android:text="@string/plus"
+                android:textColor="#C0C0C0"
+                android:textSize="30dip" />
         </TableRow>
 
         <TableRow
@@ -308,52 +304,51 @@
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="1" >
-
+
             <Button
                 android:id="@+id/button_zero"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="30dip"
-                android:padding="1dip"
-                android:layout_weight="2"
-                android:onClick="button_onClick"
-                android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
-                android:layout_marginTop="2dip"
                 android:layout_marginBottom="2dip"
                 android:layout_marginLeft="4dip"
                 android:layout_marginRight="4dip"
-                android:text="@string/zero" />
-
+                android:layout_marginTop="2dip"
+                android:layout_weight="2"
+                android:background="@drawable/button_shape"
+                android:onClick="button_onClick"
+                android:padding="1dip"
+                android:text="@string/zero"
+                android:textColor="#C0C0C0"
+                android:textSize="30dip" />
+
             <Button
                 android:id="@+id/button_decimal"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="30dip"
-                android:padding="1dip"
-                android:layout_weight="1"
-                android:onClick="button_onClick"
-                android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
                 android:layout_margin="2dip"
-                android:text="@string/decimal" />
-
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="button_onClick"
+                android:padding="1dip"
+                android:text="@string/decimal"
+                android:textColor="#C0C0C0"
+                android:textSize="30dip" />
+
             <Button
                 android:id="@+id/button_equal"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="30dip"
-                android:padding="1dip"
-                android:layout_weight="1"
-                android:onClick="button_onClick"
-                android:textColor="#C0C0C0"
-                android:background="@drawable/button_shape"
                 android:layout_margin="2dip"
-                android:text="@string/equal" />
-
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:onClick="button_onClick"
+                android:padding="1dip"
+                android:text="@string/equal"
+                android:textColor="#C0C0C0"
+                android:textSize="30dip" />
         </TableRow>
     </TableLayout>
 

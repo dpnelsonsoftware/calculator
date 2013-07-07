@@ -30,6 +30,9 @@ public class CalculatorTableRow extends LinearLayout {
 		             public void onClick(View v) {
 		            	 mActivity.addToText(mModel.mResult.toString());
 		             }
+		             
+		             
+		             
 		         });
 			}
 			else{

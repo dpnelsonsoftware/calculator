@@ -64,7 +64,6 @@ public class ExpressionTree {
 	}
 
 	private static Node parseToNode(String pAsString){
-		System.out.println(pAsString);
 		if("+".equals(pAsString)){
 			return new AdditionNode();
 		}
@@ -106,7 +105,6 @@ public class ExpressionTree {
 		private double mValue;
 		
 		private NumericNode(String pValue){
-			System.out.println(pValue);
 			if(pValue.contains("E")){
 				String[] parts = pValue.split("E");
 				//strip off the sign
